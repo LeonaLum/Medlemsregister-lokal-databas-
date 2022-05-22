@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include("./partials/head.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+  
+  <main>
+    <form class="reg-form" id="updateForm" data-memid="<%= member._id %>">
+      <h2>Uppdatera uppgifter:</h2>
+
+      <div class="form-field">
+        <label for="name">NAMN:</label>
+        <input value="<%= member.name %>"type="text" id="name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">EMAIL:</label>
+        <input value="<%= member.email %>" type="email" id="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="number">TELEFONUMMER</label>
+        <input value="<%= member.number %>" type="number" id="number" name="number" required>
+      </div>
+      <div class="form-field">
+        <label for="favouriteAuthor">FAVORIT FÖRFATTARE:</label>
+        <input value="<%= member.favouriteAuthor %>" type="text" id="favouriteAuthor" name="favouriteAuthor" required>
+      </div>
+      <button id="updateButton">UPPDATERA</button>
+    </form>
+  
+  </main>
+<%- include("./partials/footer.ejs") %>
+
+<script>
+  let updateButton = document.getElementById("updateButton");
+  let updateForm = document.getElementById('updateForm');
+
+  let fieldnumber = document.getElementById('number');
+  let fieldemail = document.getElementById('email');
+  let fieldname = document.getElementById('name');
+  let fieldauthor = document.getElementById('favouriteAuthor');
+
+
+  updateButton.addEventListener("click", (e) => {
+    e.preventDefault();
+     fetch(`http://localhost:3000/updatemember/${updateForm.dataset.memid}`, {
+       method: 'PATCH',
+       headers: { "Content-Type": "application/json; charset=UTF-8",},
+       body: JSON.stringify({
+         name: fieldname.value,
+         email: fieldemail.value,
+         number: fieldnumber.value,
+         favouriteAuthor: fieldauthor.value
+       }),
+     })
+     .then((response) => response.json())
+     .then((json) => console.log(json))
+     .catch(err => console.log(err))
+  });
+  
+</script>
+
+
+
+</body>
+</html>

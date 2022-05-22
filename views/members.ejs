@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include("./partials/head.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <main>
+    <div class="member-list">
+      <div class="list-head">
+        <h2>MEDLEMMAR</h2>
+        <div class="sort-div">
+          <p>Sortering:</p>
+          <a href="?sort=a-z" class="sort-button" id="sortAz">
+            A - Ö
+          </a>
+          <a href="?sort=z-a" class="sort-button" id="sortZa">
+            Ö - A
+          </a>
+          <a href="?" class="sort-button" id="default">
+            DEFAULT
+          </a>
+       </div>
+      </div>
+      <ul class="list-body">
+
+       <% if (members.length > 0) { %>
+         <% members.forEach(member => { %>
+          <li class="member-card">
+            <a href="/members/<%= member._id %>">
+              
+              <h3 class="name"><%= member.name %></h3>
+              
+            </a>
+          </li>
+         <% }) %>
+
+       <%}else { %>
+         <h2 class="message">Det finns inga medlemmar i klubben just nu</h2>
+       <%}%>
+
+      
+
+      </ul>
+      
+    
+    
+    </div>
+  
+  </main>
+<%- include("./partials/footer.ejs") %>
+<script>
+  let sortAz = document.getElementById("sortAz");
+  let sortZa = document.getElementById("sortZa");
+  let def = document.getElementById("default");
+
+  sortAz.addEventListener("click", () => {
+    fetch("/members?sort=a-z")
+    .then(response => response.json())
+    .then (data => console.log(data));
+  })
+  sortZa.addEventListener("click", () => {
+    fetch("/members?sort=z-a")
+    .then(response => response.json())
+    .then (data => console.log(data));
+  })
+  def.addEventListener("click", () => {
+    fetch("/members")
+    .then(response => response.json())
+    .then (data => console.log(data));
+  })
+</script>
+</body>
+</html>

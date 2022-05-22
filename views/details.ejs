@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include("./partials/head.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+  <main>
+
+    <%let formatDate = (value, locale = "en-GB") => { %>
+      <% return new Date(value).toLocaleDateString(locale); %>
+     <%}%>
+    
+       <div class="member-div">
+         <h2> MEDLEMS ID: <%= member._id %></h2>
+         <p><span class="bold">NAMN:</span> <%= member.name %></p>
+         <p> <span class="bold">EMAIL:</span> <%= member.email %></p>
+         <p> <span class="bold">TELEFONUMMER:</span> <%= member.number %></p>
+         <p> <span class="bold">FAVORIT FÖRFATTARE:</span><%= member.favouriteAuthor %></p>
+         <p> <span class="bold">BLEV MEDLEM:</span><%= formatDate(member.createdAt) %></p>
+
+         
+
+         <div class="button-div">
+           <a class="del edit-button" data-doc="<%= member._id %>"> 
+            TA BORT
+           </a>
+
+           <a class="upd edit-button" 
+           data-i="<%= member._id %>"href="/updatemember/<%= member._id %>"> 
+            UPPDATERA
+           </a>
+        </div>
+       </div>
+  
+  </main>
+<%- include("./partials/footer.ejs") %>
+
+ <script>
+   const del = document.querySelector('a.del');
+   del.addEventListener('click', (e) => {
+     const endpoint = `/members/${del.dataset.doc}`;
+
+     fetch(endpoint, {
+       method: 'DELETE'
+     })
+      .then((response) => response.json())
+      .then((data) => window.location.href = data.redirect)
+      .catch(err => console.log(err));
+   })
+
+
+
+ </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+main{
+  @include flexBox(column, center, space-around);
+  min-height: 500px;
+  
+  .welcome-div{
+    h2{
+      font-size: 30px;
+      margin-bottom:30px;
+    }
+    p{
+      padding:10px;
+    }
+    @include flexBox(column, center, space-around);
+    max-width: 400px;
+    color: rgb(61, 129, 255);
+    
+   
+  }
+
+  .member-div{
+    @include flexBox(column, flex-start, flex-start);
+    padding:20px;
+    color: rgb(61, 129, 255);
+    border: grey 1px solid;
+    h2{
+      margin-bottom:30px;
+    }
+    p{
+      margin-bottom: 20px;
+      border-bottom: rgb(193, 193, 193) solid 1px;
+      width: 100%;
+    }
+    span{
+      font-weight: bold;
+      margin-right:10px;
+    }
+    .button-div{
+      @include flexBox(row, center, space-around);
+      width: 100%;
+      .edit-button{
+        padding:20px;
+        background-color:rgb(61, 129, 255);
+        color: white;
+        &:hover{
+          background-color: black;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+ 
+  .member-list{
+    .message{
+      margin-top:20px;
+    }
+    .list-head{
+    @include flexBox(row, center, space-around);
+    width: 100%;
+    padding:20px;
+    color: rgb(61, 129, 255);
+    .sort-div{
+      .sort-button{
+       font-weight: bold;
+       margin-left:10px;
+       color:grey;
+       border-bottom: grey solid 2px; 
+      }
+      @include flexBox(row, center, flex-end);
+      flex:1;
+    }
+    }
+    .list-body{
+     @include flexBox(column, center, space-around);
+     width: 100%;
+     flex-wrap: wrap;
+     color:rgb(61, 129, 255);
+     padding:10px;
+    }
+    width: 100%;
+    height: 100%;
+    .member-card{
+      width: 100%;
+      padding: 20px;
+      margin-top:10px;
+      border-bottom: rgb(193, 193, 193) solid 1px;
+      h3{
+        color:rgb(106, 106, 106);
+        &:hover{
+          color:rgb(61, 129, 255);
+        }
+      }
+    }
+  }
+
+  .reg-form{
+    @include flexBox(column, center, space-around);
+    padding:20px;
+    width: 100%;
+    h2{
+      color: rgb(61, 129, 255);
+      margin-bottom: 20px;
+    }
+    .reg-inputs{
+      @include flexBox(column, flex-start, flex-end);
+      
+    .form-field{
+      @include flexBox(row, flex-start, center);
+      padding:10px;
+      width: 100%;
+      label{
+        margin-right:10px;
+      }
+      input{
+        height: 100%;
+        width: 100%;
+        border:none;
+        border-bottom: 1px grey solid;
+      }
+      }
+    }
+    button{
+      margin-top:30px;
+      border: none;
+      background-color: rgb(61, 129, 255);
+      color:white;
+      padding:30px;
+      &:hover{
+        background-color: black;
+        cursor: pointer;
+      }
+    }
+  }
+}

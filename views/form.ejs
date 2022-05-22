@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include("./partials/head.ejs") %>
+<body>
+  <%- include("./partials/nav.ejs") %>
+  
+  <main>
+    <form action="/members" method="POST" class="reg-form">
+      <h2>Registrera medlem:</h2>
+      <div class="reg-inputs">
+      <div class="form-field">
+        <label for="name">NAMN:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-field">
+        <label for="email">EMAIL:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-field">
+        <label for="number">TELEFONUMMER:</label>
+        <input type="text" id="number" name="number" required>
+      </div>
+      <div class="form-field">
+        <label for="favouriteAuthor">FAVORIT FÖRFATTARE:</label>
+        <input type="text" id="favouriteAuthor" name="favouriteAuthor" required>
+      </div>
+      </div>
+      <button>REGISTRERA</button>
+    </form>
+  
+  </main>
+<%- include("./partials/footer.ejs") %>
+
+
+
+
+</body>
+</html>
